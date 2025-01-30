@@ -8,6 +8,10 @@ def clearConsole():
     else:  # Mac/Linux
         os.system('clear')
 
+clearConsole()
+print("The AI will pick rock paper or scissors. \nYou need to pick a choice with 1,2 or 3, and the game will run.\nPress enter.")
+input()
+
 def RPS():
     clearConsole()
     choices = ['rock', 'paper', 'scissors']
@@ -27,7 +31,7 @@ def RPS():
     print("1, 2 or 3:")
 
     try:
-        userInput = int(input(">"))
+        userInput = int(input(">>"))
     except:
         print("INCORRECT INPUT")
         return
