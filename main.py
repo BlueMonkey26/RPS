@@ -1,5 +1,6 @@
-import random
 import os
+import random
+
 
 def clearConsole():
     if os.name == 'nt':  # Windows
@@ -9,50 +10,49 @@ def clearConsole():
 
 def RPS():
     clearConsole()
-    aiChoice = random.randint(1, 3)
+    choices = ['rock', 'paper', 'scissors']
 
-    if aiChoice == 1:
-        aiChoiceText = "Rock"
-    elif aiChoice == 2:
-        aiChoiceText = "Paper"
-    elif aiChoice == 3:
-        aiChoiceText = "Scissors"
+    rules = {
+        'rock': ['scissors'],
+        'paper': ['rock'],
+        'scissors': ['paper']
+    }
+
+    aiChoice = random.choice(choices)
 
     print("1. Rock")
     print("2. Paper")
-    print("3. Scissors")
+    print("3. Scissors \n")
 
-    userChoice = int(input("1, 2 or 3:"))
+    print("1, 2 or 3:")
+
+    try:
+        userInput = int(input(">"))
+    except:
+        print("INCORRECT INPUT")
+        return
+
+
+    if userInput >= 1 or userInput <= 3:
+        userChoice = choices[userInput - 1]
+    else:
+        print("ERROR: INVALID INPUT")
+        return
 
     if userChoice == aiChoice:
-        print("You tied")
+        result = 'You both picked ' + aiChoice + '!'
 
-    elif userChoice == 1 and aiChoice == 2:
-        print(aiChoiceText + "\n")
-        print("You loose!")
-    elif userChoice == 1 and aiChoice == 3:
-        print(aiChoiceText + "\n")
-        print("You win!")
+    elif aiChoice in rules[userChoice]:
+        result = 'You win! (' + userChoice + ' beats ' + aiChoice + ')'
 
-    elif userChoice == 2 and aiChoice == 1:
-        print(aiChoiceText + "\n")
-        print("You win!")
-    elif userChoice == 2 and aiChoice == 3:
-        print(aiChoiceText + "\n")
-        print("You loose!")
+    else:
+        result = 'You lose! (' + userChoice + ' beats ' + aiChoice + ')'
 
-    elif userChoice == 3 and aiChoice == 1:
-        print(aiChoiceText + "\n")
-        print("You loose!")
-    elif userChoice == 3 and aiChoice == 2:
-        print(aiChoiceText + "\n")
-        print("You win!")
-
-
+    print(result)
 
     print("\nPress enter to play again!")
     print("Press CTRL+C to exit")
-    input()
+    input(">")
     RPS()
 
 RPS()
