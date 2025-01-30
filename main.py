@@ -1,6 +1,6 @@
 import os
 import random
-
+import time
 
 def clearConsole():
     if os.name == 'nt':  # Windows
@@ -15,6 +15,7 @@ input()
 def RPS():
     clearConsole()
     choices = ['rock', 'paper', 'scissors']
+    choice2 = [1, 2, 3]
 
     rules = {
         'rock': ['scissors'],
@@ -30,8 +31,10 @@ def RPS():
 
     print("1, 2 or 3:")
 
+    userInput = random.choice(choice2)
     try:
-        userInput = int(input(">>"))
+        #userInput = int(input(">>"))
+        pass
     except:
         print("INCORRECT INPUT")
         return
@@ -56,7 +59,9 @@ def RPS():
 
     print("\nPress enter to play again!")
     print("Press CTRL+C to exit")
-    input(">")
+    time.sleep(0.001)
+RPS()
+
+while True:
     RPS()
 
-RPS()
